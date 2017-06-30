@@ -86,6 +86,7 @@ var GYRO_RATE = "01";
 var GYRO_FAST = "02";
 var GYRO_RATE_AND_ANGLE = "03";
 var GYRO_CALIBRATION = "04";
+var GYRO_RESET = "05";
 var IR_SENSOR = "21";
 var IR_PROX = "00";
 var IR_SEEKER = "01";
@@ -119,6 +120,7 @@ var port_Assignments = port_Assignments || [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var ledColors = {"off" : "00", "verde" : "01", "rosso" : "02", "arancione" : "03", "verde lampeggiante" : "04", "rosso lampeggiante" : "05", "arancione lampeggiante" : "06", "verde pulsato" : "07", "rosso pulsato" : "08", "arancione pulsato" : "09"}
 
+var gyro_reset_angle = 0.0; //zero offset at the beginning
 
 function clearSensorStatuses()
 {
@@ -621,7 +623,11 @@ function receive_handler(data)
     }
     else if (type == GYRO_SENSOR)
     {
-        theResult = getFloatResult(inputData);
+        if (mode == GYRO_RESET)
+            gyro_reset_angle = getFloatResult(inputData) - gyro_reset_angle;
+            theResult = getFloatResult(inputData) - gyro_reset_angle; // maybe this line is useless...
+        else
+            theResult = getFloatResult(inputData) - gyro_reset_angle;
     }
     else if (type == READ_FROM_MOTOR)
     {
@@ -1111,16 +1117,17 @@ function readGyroPort(mode, port, callback)
     readFromSensor2(portInt, GYRO_SENSOR, modeCode, callback);
 }
 
-function resetGyroPort(port, callback)
+function resetGyroPort2(port, callback)
 {
-    motorsOff("tutti", "frena"); // brakes movement to reset gyro. Robot must be idel while resetting but maybe enforcing total brake is too much
-
     var portInt = parseInt(port) - 1;
 
-    readFromSensor2(portInt, GYRO_SENSOR, GYRO_RATE, callback);  // reads angular speed
-    readFromSensor2(portInt, GYRO_SENSOR, GYRO_ANGLE, callback); // reads angle
+    var theCommand = createMessage(DIRECT_COMMAND_REPLY_SENSOR_PREFIX +
+                                   INPUT_DEVICE_READY_SI + "00" + // layer
+                                   hexcouplet(port) + "00" + // type
+                                   GYRO_ANGLE + //resets the angle
+                                   "0160"); // result stuff
 
-    playFreq(10, 100, callback); //waits 100ms to allow for reset. To be improved
+    addToQueryQueue([port, GYRO_SENSOR, GYRO_RESET, callback, theCommand]);
 }
 
 function readDistanceSensorPort(port, callback)
@@ -1467,6 +1474,11 @@ function(ext)
         readGyroPort(mode, port, callback);
      }
 
+     ext.resetGyroPort2 = function(port, callback)
+     {
+        resetGyroPort2(port, callback);
+     }
+
      ext.readDistanceSensorPort = function(port, callback)
      {
         readDistanceSensorPort(port, callback);
@@ -1506,7 +1518,7 @@ function(ext)
               ["R", "misura della distanza alla porta %m.whichInputPort",                  "readDistanceSensorPort",   "1"],
               ["R", "%m.motorInputMode del motore alla porta %m.whichMotorIndividual",     "readFromMotor",   "angolo", "A"],
               ["R", "%m.gyroMode del giroscopio alla porta %m.whichInputPort",                 "readGyroPort",  "angolo", "1"],
-              [" ", "azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort", "1"],
+              ["w", "(2) azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort2", "1"],
                     ],
      "menus": {
      "whichMotorPort":   ["A", "B", "C", "D", "A+D", "B+C", "tutti"],
