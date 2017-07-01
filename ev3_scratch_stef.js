@@ -1518,7 +1518,7 @@ function(ext)
               ["R", "misura della distanza alla porta %m.whichInputPort",                  "readDistanceSensorPort",   "1"],
               ["R", "%m.motorInputMode del motore alla porta %m.whichMotorIndividual",     "readFromMotor",   "angolo", "A"],
               ["R", "%m.gyroMode del giroscopio alla porta %m.whichInputPort",                 "readGyroPort",  "angolo", "1"],
-              ["w", "(2) azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort2", "1"],
+              [" ", "(2) azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort2", "1"],
                     ],
      "menus": {
      "whichMotorPort":   ["A", "B", "C", "D", "A+D", "B+C", "tutti"],
