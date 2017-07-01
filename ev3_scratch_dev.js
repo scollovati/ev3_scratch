@@ -1466,6 +1466,11 @@ function(ext)
      {
         readGyroPort(mode, port, callback);
      }
+     
+     ext.resetGyroPort = function(port, callback)
+     {
+         resetGyroPort(port, callback);
+     }
 
      ext.readDistanceSensorPort = function(port, callback)
      {
@@ -1506,7 +1511,7 @@ function(ext)
               ["R", "misura della distanza alla porta %m.whichInputPort",                  "readDistanceSensorPort",   "1"],
               ["R", "%m.motorInputMode del motore alla porta %m.whichMotorIndividual",     "readFromMotor",   "angolo", "A"],
               ["R", "%m.gyroMode del giroscopio alla porta %m.whichInputPort",                 "readGyroPort",  "angolo", "1"],
-              [" ", "azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort", "1"],
+              ["w", "azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort", "1"],
                     ],
      "menus": {
      "whichMotorPort":   ["A", "B", "C", "D", "A+D", "B+C", "tutti"],
