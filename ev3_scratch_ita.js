@@ -1486,7 +1486,7 @@ function(ext)
               [" ", "porta il motore %m.whichMotorPort alla velocità %n",              "startMotors",      "B+C", 100],
               [" ", "ruota il motore %m.whichMotorPort di %n gradi alla velocità %n e poi %m.brakeCoast",              "motorDegrees",      "A", 360, 60, "frena"],
               [" ", "ferma i motori %m.whichMotorPort e poi %m.brakeCoast",                       "motorsOff",     "tutti", "frena"],
-              [" ", "imposta LED colore %m.patterns",                                 "setLED",                 "verde"],
+              [" ", "imposta LED Brick colore %m.patterns",                                 "setLED",                 "verde"],
               ["h", "quando si preme il pulsante alla porta %m.whichInputPort",       "whenButtonPressed","1"],
               ["R", "il pulsante alla porta %m.whichInputPort è premuto",                    "readTouchSensorPort",   "1"],
               ["w", "suona la nota %m.note per %n ms",                    "playTone",         "C5", 500],

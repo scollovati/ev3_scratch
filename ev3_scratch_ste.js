@@ -120,7 +120,7 @@ var port_Assignments = port_Assignments || [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var ledColors = {"off" : "00", "verde" : "01", "rosso" : "02", "arancione" : "03", "verde lampeggiante" : "04", "rosso lampeggiante" : "05", "arancione lampeggiante" : "06", "verde pulsato" : "07", "rosso pulsato" : "08", "arancione pulsato" : "09"}
 
-var gyro_reset_angle = 0.0; //zero offset at the beginning
+var gyro_reset_angle = 0; //zero offset at the beginning
 
 function clearSensorStatuses()
 {
