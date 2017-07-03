@@ -1118,9 +1118,9 @@ function resetGyroPort(port, callback)
     var portInt = parseInt(port) - 1;
 
     readFromSensor2(portInt, GYRO_SENSOR, GYRO_RATE, callback);  // reads angular speed
-    console_log("Rate")
+    console_log("Rate");
     readFromSensor2(portInt, GYRO_SENSOR, GYRO_ANGLE, callback); // reads angle
-    console_log("Back to angle")
+    console_log("Back to angle");
 
     window.setTimeout(function() { //Wait 100ms
             callback();
