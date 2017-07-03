@@ -1126,6 +1126,7 @@ function resetGyroPort(port, callback)
             callback();
         }, 100);
    // playFreq(10, 100, callback); //waits 100ms to allow for reset. Older version
+}
 
 function readDistanceSensorPort(port, callback)
 {
