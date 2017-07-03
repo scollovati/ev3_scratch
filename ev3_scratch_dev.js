@@ -1113,15 +1113,19 @@ function readGyroPort(mode, port, callback)
 
 function resetGyroPort(port, callback)
 {
-    motorsOff("tutti", "frena"); // brakes movement to reset gyro. Robot must be idel while resetting but maybe enforcing total brake is too much
+    motorsOff("tutti", "frena"); // brakes movement to reset gyro. Robot must be idle while resetting but maybe enforcing total brake is too much
 
     var portInt = parseInt(port) - 1;
 
     readFromSensor2(portInt, GYRO_SENSOR, GYRO_RATE, callback);  // reads angular speed
+    console_log("Rate")
     readFromSensor2(portInt, GYRO_SENSOR, GYRO_ANGLE, callback); // reads angle
+    console_log("Back to angle")
 
-    playFreq(10, 100, callback); //waits 100ms to allow for reset. To be improved
-}
+    window.setTimeout(function() { //Wait 100ms
+            callback();
+        }, 100);
+   // playFreq(10, 100, callback); //waits 100ms to allow for reset. Older version
 
 function readDistanceSensorPort(port, callback)
 {
@@ -1512,6 +1516,7 @@ function(ext)
               ["R", "%m.motorInputMode del motore alla porta %m.whichMotorIndividual",     "readFromMotor",   "angolo", "A"],
               ["R", "%m.gyroMode del giroscopio alla porta %m.whichInputPort",                 "readGyroPort",  "angolo", "1"],
               ["w", "azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort", "1"],
+              ["w", "suona la frequenza %n Hz per %n ms",                    "playFreq",         "262", 500],
                     ],
      "menus": {
      "whichMotorPort":   ["A", "B", "C", "D", "A+D", "B+C", "tutti"],
