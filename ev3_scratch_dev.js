@@ -996,10 +996,10 @@ function playTone(tone, duration, callback)
     addToQueryQueue([TONE_QUERY, duration, callback, toneCommand]);
 }
 
-function playFreq(freq, duration, callback)
+function playFreq(freq, duration, volume, callback)
 {
     console_log("playFreq duration: " + duration + " freq: " + freq);
-    var volume = 100;
+//    var volume = 100;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -1121,10 +1121,10 @@ function resetGyroPort(port, callback)
     console_log("Rate");
     readFromSensor2(portInt, GYRO_SENSOR, GYRO_ANGLE, callback); // reads angle
     console_log("Back to angle");
-
-    window.setTimeout(function() { //Wait 100ms
+    window.setTimeout(function() { //Wait 200ms
             callback();
-        }, 100);
+        }, 200);
+    console_log("End of waiting time");
    // playFreq(10, 100, callback); //waits 100ms to allow for reset. Older version
 }
 
@@ -1426,9 +1426,9 @@ function(ext)
         playTone(tone, duration, callback);
      }
 
-     ext.playFreq = function(freq, duration, callback)
+     ext.playFreq = function(freq, duration, volume, callback)
      {
-        playFreq(freq, duration, callback);
+        playFreq(freq, duration, volume, callback);
      }
 
      ext.motorsOff = function(which, how)
@@ -1517,7 +1517,7 @@ function(ext)
               ["R", "%m.motorInputMode del motore alla porta %m.whichMotorIndividual",     "readFromMotor",   "angolo", "A"],
               ["R", "%m.gyroMode del giroscopio alla porta %m.whichInputPort",                 "readGyroPort",  "angolo", "1"],
               ["w", "azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort", "1"],
-              ["w", "suona la frequenza %n Hz per %n ms",                    "playFreq",         "262", 500],
+              ["w", "suona la frequenza %n Hz per %n ms al volume %n",                    "playFreq",         "262", 500, 10],
                     ],
      "menus": {
      "whichMotorPort":   ["A", "B", "C", "D", "A+D", "B+C", "tutti"],
