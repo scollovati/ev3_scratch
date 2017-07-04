@@ -986,7 +986,7 @@ function playTone(tone, duration, callback)
 {
     var freq = frequencies[tone];
     console_log("playTone " + tone + " duration: " + duration + " freq: " + freq);
-    var volume = 100;
+    var volume = 20;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -999,7 +999,7 @@ function playTone(tone, duration, callback)
 function playFreq(freq, duration, callback)
 {
     console_log("playFreq duration: " + duration + " freq: " + freq);
-    var volume = 100;
+    var volume = 20;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
