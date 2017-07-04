@@ -739,7 +739,7 @@ function motor2(which, speed)
 function playFreqM2M(freq, duration)
 {
     console_log("playFreqM2M duration: " + duration + " freq: " + freq);
-    var volume = 100;
+    var volume = 20;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -986,7 +986,7 @@ function playTone(tone, duration, callback)
 {
     var freq = frequencies[tone];
     console_log("playTone " + tone + " duration: " + duration + " freq: " + freq);
-    var volume = 100;
+    var volume = 20;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -996,10 +996,10 @@ function playTone(tone, duration, callback)
     addToQueryQueue([TONE_QUERY, duration, callback, toneCommand]);
 }
 
-function playFreq(freq, duration, volume, callback)
+function playFreq(freq, duration, callback)
 {
     console_log("playFreq duration: " + duration + " freq: " + freq);
-//    var volume = 100;
+    var volume = 20;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -1060,7 +1060,7 @@ function whenRemoteButtonPressed(IRbutton, port)
     return (global_sensor_result[portInt] == IRbutton);
 }
 
-function readTouchSensorPort(port, callback)
+function readTouchSensorPort(port, callback) //deprecated
 {
     var portInt = parseInt(port) - 1;
     readTouchSensor(portInt, callback);
@@ -1426,9 +1426,9 @@ function(ext)
         playTone(tone, duration, callback);
      }
 
-     ext.playFreq = function(freq, duration, volume, callback)
+     ext.playFreq = function(freq, duration, callback)
      {
-        playFreq(freq, duration, volume, callback);
+        playFreq(freq, duration, callback);
      }
 
      ext.motorsOff = function(which, how)
@@ -1471,7 +1471,7 @@ function(ext)
      {
         readGyroPort(mode, port, callback);
      }
-     
+
      ext.resetGyroPort = function(port, callback)
      {
          resetGyroPort(port, callback);
@@ -1508,16 +1508,15 @@ function(ext)
               [" ", "porta il motore %m.whichMotorPort alla velocità %n",              "startMotors",      "B+C", 100],
               [" ", "ruota il motore %m.whichMotorPort di %n gradi alla velocità %n e poi %m.brakeCoast",              "motorDegrees",      "A", 360, 60, "frena"],
               [" ", "ferma i motori %m.whichMotorPort e poi %m.brakeCoast",                       "motorsOff",     "tutti", "frena"],
-              [" ", "imposta LED colore %m.patterns",                                 "setLED",                 "verde"],
+              [" ", "imposta LED Brick colore %m.patterns",                                 "setLED",                 "verde"],
               ["h", "quando si preme il pulsante alla porta %m.whichInputPort",       "whenButtonPressed","1"],
-              ["R", "il pulsante alla porta %m.whichInputPort è premuto",                    "readTouchSensorPort",   "1"],
+              ["b", "il pulsante alla porta %m.whichInputPort è premuto",                    "whenButtonPressed",   "1"],
               ["w", "suona la nota %m.note per %n ms",                    "playTone",         "C5", 500],
               ["R", "valore del sensore di luce in modalità %m.lightSensorMode alla porta %m.whichInputPort",   "readColorSensorPort",   "colore", "1"],
               ["R", "misura della distanza alla porta %m.whichInputPort",                  "readDistanceSensorPort",   "1"],
               ["R", "%m.motorInputMode del motore alla porta %m.whichMotorIndividual",     "readFromMotor",   "angolo", "A"],
               ["R", "%m.gyroMode del giroscopio alla porta %m.whichInputPort",                 "readGyroPort",  "angolo", "1"],
               ["w", "azzera il giroscopio alla porta %m.whichInputPort", "resetGyroPort", "1"],
-              ["w", "suona la frequenza %n Hz per %n ms al volume %n",                    "playFreq",         "262", 500, 10],
                     ],
      "menus": {
      "whichMotorPort":   ["A", "B", "C", "D", "A+D", "B+C", "tutti"],

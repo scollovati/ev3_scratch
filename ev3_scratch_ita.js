@@ -1060,7 +1060,7 @@ function whenRemoteButtonPressed(IRbutton, port)
     return (global_sensor_result[portInt] == IRbutton);
 }
 
-function readTouchSensorPort(port, callback)
+function readTouchSensorPort(port, callback) //deprecated
 {
     var portInt = parseInt(port) - 1;
     readTouchSensor(portInt, callback);
