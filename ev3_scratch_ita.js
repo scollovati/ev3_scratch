@@ -739,7 +739,7 @@ function motor2(which, speed)
 function playFreqM2M(freq, duration)
 {
     console_log("playFreqM2M duration: " + duration + " freq: " + freq);
-    var volume = 50;
+    var volume = 20;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
