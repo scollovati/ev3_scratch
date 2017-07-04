@@ -1510,7 +1510,7 @@ function(ext)
               [" ", "ferma i motori %m.whichMotorPort e poi %m.brakeCoast",                       "motorsOff",     "tutti", "frena"],
               [" ", "imposta LED Brick colore %m.patterns",                                 "setLED",                 "verde"],
               ["h", "quando si preme il pulsante alla porta %m.whichInputPort",       "whenButtonPressed","1"],
-              ["R", "il pulsante alla porta %m.whichInputPort è premuto",                    "readTouchSensorPort",   "1"],
+              ["b", "il pulsante alla porta %m.whichInputPort è premuto",                    "readTouchSensorPort",   "1"],
               ["w", "suona la nota %m.note per %n ms",                    "playTone",         "C5", 500],
               ["R", "valore del sensore di luce in modalità %m.lightSensorMode alla porta %m.whichInputPort",   "readColorSensorPort",   "colore", "1"],
               ["R", "misura della distanza alla porta %m.whichInputPort",                  "readDistanceSensorPort",   "1"],
