@@ -1447,6 +1447,11 @@ function(ext)
         playFreq(freq, duration, callback);
      }
 
+     ext.setVolume = function(volume)
+     {
+        setVolume(volume);
+     }
+
      ext.motorsOff = function(which, how)
      {
         motorsOff(which, how)
