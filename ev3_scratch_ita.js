@@ -1015,10 +1015,10 @@ function motorsOff(which, how)
     motorsStop(which, how);
 }
 
-function steeringControl(ports, what, duration, callback)
+function steeringControl(ports, what, duration, speed, callback)
 {
     clearDriveTimer();
-    var defaultSpeed = 50;
+    var defaultSpeed = speed;
     var motorCommand = null;
     if (what == 'avanti')
     {
@@ -1436,9 +1436,9 @@ function(ext)
         motorsOff(which, how)
      }
 
-     ext.steeringControl = function(ports, what, duration, callback)
+     ext.steeringControl = function(ports, what, duration, speed, callback)
      {
-        steeringControl(ports, what, duration, callback)
+        steeringControl(ports, what, duration, speed, callback)
      }
 
      ext.whenButtonPressed = function(port)
@@ -1504,7 +1504,7 @@ function(ext)
      // Block and block menu descriptions
      var descriptor = {
      blocks: [
-              ["w", "muovi i motori %m.dualMotors %m.turnStyle per %n secondi",         "steeringControl",  "B+C", "avanti", 3],
+              ["w", "muovi i motori %m.dualMotors %m.turnStyle per %n secondi alla velocità %n",         "steeringControl",  "B+C", "avanti", 3, 60],
               [" ", "porta il motore %m.whichMotorPort alla velocità %n",              "startMotors",      "B+C", 100],
               [" ", "ruota il motore %m.whichMotorPort di %n gradi alla velocità %n e poi %m.brakeCoast",              "motorDegrees",      "A", 360, 60, "frena"],
               [" ", "ferma i motori %m.whichMotorPort e poi %m.brakeCoast",                       "motorsOff",     "tutti", "frena"],
