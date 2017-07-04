@@ -119,6 +119,7 @@ var port_Assignments = port_Assignments || [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 var ledColors = {"off" : "00", "verde" : "01", "rosso" : "02", "arancione" : "03", "verde lampeggiante" : "04", "rosso lampeggiante" : "05", "arancione lampeggiante" : "06", "verde pulsato" : "07", "rosso pulsato" : "08", "arancione pulsato" : "09"}
 
+var sound_volume = sound_volume || 20;
 
 function clearSensorStatuses()
 {
@@ -739,7 +740,7 @@ function motor2(which, speed)
 function playFreqM2M(freq, duration)
 {
     console_log("playFreqM2M duration: " + duration + " freq: " + freq);
-    var volume = 20;
+    var volume = sound_volume;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -986,7 +987,7 @@ function playTone(tone, duration, callback)
 {
     var freq = frequencies[tone];
     console_log("playTone " + tone + " duration: " + duration + " freq: " + freq);
-    var volume = 20;
+    var volume = sound_volume;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -999,7 +1000,7 @@ function playTone(tone, duration, callback)
 function playFreq(freq, duration, callback)
 {
     console_log("playFreq duration: " + duration + " freq: " + freq);
-    var volume = 20;
+    var volume = sound_volume;
     var volString = getPackedOutputHexString(volume, 1);
     var freqString = getPackedOutputHexString(freq, 2);
     var durString = getPackedOutputHexString(duration, 2);
@@ -1007,6 +1008,21 @@ function playFreq(freq, duration, callback)
     var toneCommand = createMessage(DIRECT_COMMAND_PREFIX + PLAYTONE + volString + freqString + durString);
 
     addToQueryQueue([TONE_QUERY, duration, callback, toneCommand]);
+}
+
+function setVolume(volume){
+    if (volume > 100)
+    {
+      sound_volume = 100;
+    }
+    else if (volume < 0)
+    {
+      sound_volume = 0;
+    }
+    else
+    {
+      sound_volume = volume;
+    }
 }
 
 function motorsOff(which, how)
@@ -1512,6 +1528,7 @@ function(ext)
               ["h", "quando si preme il pulsante alla porta %m.whichInputPort",       "whenButtonPressed","1"],
               ["b", "il pulsante alla porta %m.whichInputPort è premuto",                    "whenButtonPressed",   "1"],
               ["w", "suona la nota %m.note per %n ms",                    "playTone",         "C5", 500],
+              [" ", "porta il volume del brick a %n",                    "setVolume",         20],
               ["R", "valore del sensore di luce in modalità %m.lightSensorMode alla porta %m.whichInputPort",   "readColorSensorPort",   "colore", "1"],
               ["R", "misura della distanza alla porta %m.whichInputPort",                  "readDistanceSensorPort",   "1"],
               ["R", "%m.motorInputMode del motore alla porta %m.whichMotorIndividual",     "readFromMotor",   "angolo", "A"],

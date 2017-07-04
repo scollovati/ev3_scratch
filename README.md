@@ -12,3 +12,4 @@ We added some extra features:
 
 In progress:
 - block for changing the volume of the played note
+- 
