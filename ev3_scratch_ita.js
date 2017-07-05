@@ -1215,7 +1215,7 @@ var connectionTimeout = connectionTimeout || null;
 
 function batteryAlert()
 {
-    alert("Your battery is getting low.");
+    alert("La batteria del brick si sta scaricando.");
 }
 
 function connectingOrConnected()
@@ -1467,6 +1467,11 @@ function(ext)
         return whenButtonPressed(port);
      }
 
+     ext.whenButtonPressed_b = function(port)
+     {
+        return whenButtonPressed(port);
+     }
+
      ext.whenRemoteButtonPressed = function(IRbutton, port)
      {
         return whenRemoteButtonPressed(IRbutton, port);
@@ -1531,7 +1536,7 @@ function(ext)
               [" ", "ferma i motori %m.whichMotorPort e poi %m.brakeCoast",                       "motorsOff",     "tutti", "frena"],
               [" ", "imposta LED Brick colore %m.patterns",                                 "setLED",                 "verde"],
               ["h", "quando si preme il pulsante alla porta %m.whichInputPort",       "whenButtonPressed","1"],
-              ["b", "il pulsante alla porta %m.whichInputPort è premuto",                    "whenButtonPressed",   "1"],
+              ["b", "il pulsante alla porta %m.whichInputPort è premuto",                    "whenButtonPressed_b",   "1"],
               ["w", "suona la nota %m.note per %n ms",                    "playTone",         "C5", 500],
               [" ", "porta il volume del brick a %n",                    "setVolume",         20],
               ["R", "valore del sensore di luce in modalità %m.lightSensorMode alla porta %m.whichInputPort",   "readColorSensorPort",   "colore", "1"],
