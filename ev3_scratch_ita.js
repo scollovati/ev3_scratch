@@ -1065,15 +1065,6 @@ function whenButtonPressed(port)
     return global_sensor_result[portInt];
 }
 
-function whenButtonPressed_b(port)
-{
-    if (notConnected())
-        return false;
-    var portInt = parseInt(port) - 1;
-    readTouchSensor(portInt, null);
-    return global_sensor_result[portInt];
-}
-
 function whenRemoteButtonPressed(IRbutton, port)
 {
     if (notConnected())
@@ -1478,7 +1469,7 @@ function(ext)
 
      ext.whenButtonPressed_b = function(port)
      {
-        return whenButtonPressed_b(port);
+        return whenButtonPressed(port);
      }
 
      ext.whenRemoteButtonPressed = function(IRbutton, port)
