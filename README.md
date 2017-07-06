@@ -6,10 +6,11 @@ We're working on the [ev3_scratch_ita.js](http://scollovati.github.io/ev3_scratc
 We translated in italian the famous ScratchX plugin for the LEGO Mindstorms EV3.
 
 We added some extra features:
-- Gyro read value block (angle, angular velocity options)
-- Gyro reset angle block
-- Boolean synchronous block for the touch sensor (pressed: true/false)
-- Block for changing the volume of the played note (only changes the global value of a variable)
+- added velocity to the Steering Control block;
+- Gyro read value block (angle, angular velocity options) - it was commented;
+- Gyro reset angle block;
+- Boolean synchronous block for the touch sensor (pressed: true/false) - we created a new ext function that calls the usual whenButtonPressed function to avoid visualisation problems of the blocks after saving and loading the .sbx file;
+- Block for changing the volume of the played note (only changes the global value of a variable).
 
 In progress:
 - [nothing]
