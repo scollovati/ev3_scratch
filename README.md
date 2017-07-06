@@ -1,4 +1,4 @@
-# ev3_scratch
+# ev3_scratch_ita
 Italian Translation + Gyro & Boolean upgrades - EV3 Scratch Edit
 
 We're working on the [ev3_scratch_ita.js](http://scollovati.github.io/ev3_scratch/ev3_scratch_ita.js) file: this is the URL that you need to load on ScratchX.
