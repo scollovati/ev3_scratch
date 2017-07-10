@@ -1076,11 +1076,13 @@ function whenRemoteButtonPressed(IRbutton, port)
     return (global_sensor_result[portInt] == IRbutton);
 }
 
-function readTouchSensorPort(port, callback) //deprecated
+/* DEPRECATED
+function readTouchSensorPort(port, callback)
 {
     var portInt = parseInt(port) - 1;
     readTouchSensor(portInt, callback);
 }
+*/
 
 function readColorSensorPort(mode, port, callback)
 {
@@ -1477,10 +1479,12 @@ function(ext)
         return whenRemoteButtonPressed(IRbutton, port);
      }
 
+     /* DEPRECATED
      ext.readTouchSensorPort = function(port, callback)
      {
         readTouchSensorPort(port, callback);
      }
+     */
 
      ext.readColorSensorPort = function(mode, port, callback)
      {
