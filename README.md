@@ -11,7 +11,7 @@ We added some extra features:
 In progress:
 - [nothing]
 
-Furthermore we translated in it **Italian**. You can find it in this [file](http://scollovati.github.io/ev3_scratch/ev3_scratch_ita.js): this is the URL that you need to load on ScratchX.
+Furthermore we translated in it **Italian**. You can find it in this [file](http://scollovati.github.io/ev3_scratch/ev3_scratch_ita.js): this is the URL that you need to load on ScratchX. This file has some blocks (readRemoteButtonPort,playFreq) commented because we found them unuseful: however the english file (ev3_scratch.js) is aligned with the original one.
 
 We tested these fixes and upgrades during a weeklong camp with 5 EV3 kits working simultaneously.
 
