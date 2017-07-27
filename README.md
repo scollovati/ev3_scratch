@@ -1,4 +1,4 @@
-# ev3_scratch_ita
+# LEGO Mindstorms EV3 ScratchX Extension (Italian translation)
 Some fixes, updates and ITA translation
 
 We added some extra features:
