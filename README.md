@@ -9,7 +9,7 @@ We added some extra features:
 - created **command Block for changing the volume** of the played note (only changes the global value of the volume variable)
 
 In progress:
-- [nothing]
+- put the translation inside a unique .js file (like in the [Arduino Extension](https://github.com/khanning/scratch-arduino-extension/blob/gh-pages/arduino_extension.js))
 
 Furthermore we translated in it **Italian**. You can find it in this [file](http://scollovati.github.io/ev3_scratch/ev3_scratch_ita.js): this is the URL that you need to load on ScratchX. This file has some blocks (readRemoteButtonPort, playFreq) commented because we found them unuseful: however the english file (ev3_scratch.js) is aligned with the original one.
 
