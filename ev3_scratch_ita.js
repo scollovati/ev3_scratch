@@ -1574,7 +1574,7 @@ function(ext)
 
 
      var serial_info = {type: 'serial'};
-     ScratchExtensions.register('EV3 Kano', descriptor, ext, serial_info);
+     ScratchExtensions.register('Blocchi EV3', descriptor, ext, serial_info);
      console_log(' estensione registrata. EV3 collegato:' + theEV3Device);
 
      console_log("Estensione EV3Scratch già caricato: " + EV3ScratchAlreadyLoaded);
